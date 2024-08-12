@@ -18,7 +18,7 @@
                             </div>
                             <div class="ms-auto widget-icon-small text-white bg-gradient-purple">
                             {{-- <ion-icon name="wallet-outline"></ion-icon> --}}
-                            <img src="{{ asset('https://hixpress.online/'.$item['Merchant']['logo']) }}" width="25" alt="" srcset="">
+                            <img src="{{ asset(env('API_BASE_URL_ORIGIN').$item['Merchant']['logo']) }}" width="15" alt="" srcset="">
                             </div>
                         </div>
                         <p>{{ \Carbon\Carbon::parse($item['tanggalRequest'])->format('d M Y H:i:s') }}</p>
@@ -98,7 +98,7 @@
                       @forelse ($onHold as $item)
                       <div class="d-flex align-items-center gap-3 mb-3">
                         <div class="country-icon">
-                        <img src="{{ asset('https://tedy-dev.my.id/'.$item['Merchant']['logo']) }}" width="35" alt="" srcset="">
+                        <img src="{{ asset(env('API_BASE_URL_ORIGIN').$item['Merchant']['logo']) }}" width="15" alt="" srcset="">
                         </div>
                         <div class="country-name flex-grow-1">
                             <h5 class="mb-0">{{ $item['Merchant']['bussinesName'] }}</h5>
@@ -142,7 +142,7 @@
                     @forelse ($DataOnDelivery as $item)
                         <div class="d-flex align-items-center gap-3 mb-3">
                         <div class="country-icon">
-                        <img src="{{ asset('https://tedy-dev.my.id/'.$item['Merchant']['logo']) }}" width="35" alt="" srcset="">
+                        <img src="{{ asset(env('API_BASE_URL_ORIGIN').$item['Merchant']['logo']) }}" width="15" alt="" srcset="">
                         </div>
                         <div class="country-name flex-grow-1">
                             <h5 class="mb-0">{{ $item['Merchant']['bussinesName'] }}</h5>
@@ -199,7 +199,7 @@
                           @forelse ($recent as $item)
                               <tr>
                                   <td>{{ $item['Merchant']['bussinesName'] }}</td>
-                                  <td><img src="{{ asset('https://tedy-dev.my.id/'.$item['Merchant']['logo']) }}" alt="Logo" width="50"></td>
+                                  <td><img src="{{ asset(env('API_BASE_URL_ORIGIN').$item['Merchant']['logo']) }}" alt="Logo" width="15"></td>
                                   <td>{{ $item['noResi'] }}</td>
                                   <td>{{ $item['status'] }}</td>
                                   <td>{{ $item['Service']['service'] }}</td>

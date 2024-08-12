@@ -110,7 +110,7 @@
                                 @endforeach
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-block">Daftar</button>
+                        <button type="submit" class="btn btn-primary btn-block mt-3">Daftar</button>
                     </form>
                       </div>
                     </div>

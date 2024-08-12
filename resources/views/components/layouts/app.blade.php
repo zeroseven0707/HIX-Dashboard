@@ -44,7 +44,6 @@
       <!--end sidebar -->
       @if (Request::is('login') || Request::is('registrasi'))
       @else
-      <!--start top header-->
       <header class="top-header">
         <nav class="navbar navbar-expand gap-3">
           <div class="toggle-icon">
@@ -52,6 +51,7 @@
           </div>
         </nav>
       </header>
+      <!--start top header-->
       <!--end top header-->
       @endif
       <div>

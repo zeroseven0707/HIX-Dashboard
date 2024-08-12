@@ -47,7 +47,7 @@
                     <tbody>
                         @forelse ($DataRequest as $item)
                             <tr>
-                                <td><img src="{{ asset('https://hixpress.online/'.$item['Merchant']['logo']) }}" alt="Logo" width="50"> &nbsp; {{ $item['Merchant']['bussinesName'] }}</td>
+                                <td><img src="{{ env('API_BASE_URL_ORIGIN').$item['Merchant']['logo']) }}" alt="Logo" width="50"> &nbsp; {{ $item['Merchant']['bussinesName'] }}</td>
                                 <td>{{ $item['noResi'] }}</td>
                                 <td>{{ $item['status'] }}</td>
                                 <td>{{ $item['Service']['service'] }}</td>
@@ -80,7 +80,7 @@
                     <tbody>
                         @forelse ($DataOnHold as $item)
                             <tr>
-                                <td><img src="{{ asset('https://hixpress.online/'.$item['Merchant']['logo']) }}" alt="Logo" width="50"> &nbsp; {{ $item['Merchant']['bussinesName'] }}</td>
+                                <td><img src="{{ asset(env('API_BASE_URL_ORIGIN').$item['Merchant']['logo']) }}" alt="Logo" width="50"> &nbsp; {{ $item['Merchant']['bussinesName'] }}</td>
                                 <td>{{ $item['noResi'] }}</td>
                                 <td>{{ $item['status'] }}</td>
                                 <td>{{ $item['Service']['service'] }}</td>
@@ -113,7 +113,7 @@
                     <tbody>
                         @forelse ($DataOnPickup as $item)
                             <tr>
-                                <td><img src="{{ asset('https://hixpress.online/'.$item['Merchant']['logo']) }}" alt="Logo" width="50"> &nbsp; {{ $item['Merchant']['bussinesName'] }}</td>
+                                <td><img src="{{ asset(env('API_BASE_URL_ORIGIN').$item['Merchant']['logo']) }}" alt="Logo" width="50"> &nbsp; {{ $item['Merchant']['bussinesName'] }}</td>
                                 <td>{{ $item['noResi'] }}</td>
                                 <td>{{ $item['status'] }}</td>
                                 <td>{{ $item['Service']['service'] }}</td>
@@ -146,7 +146,7 @@
                     <tbody>
                         @forelse ($DataOnDelivery as $item)
                             <tr>
-                                <td><img src="{{ asset('https://hixpress.online/'.$item['Merchant']['logo']) }}" alt="Logo" width="50"> &nbsp; {{ $item['Merchant']['bussinesName'] }}</td>
+                                <td><img src="{{ asset(env('API_BASE_URL_ORIGIN').$item['Merchant']['logo']) }}" alt="Logo" width="50"> &nbsp; {{ $item['Merchant']['bussinesName'] }}</td>
                                 <td>{{ $item['noResi'] }}</td>
                                 <td>{{ $item['status'] }}</td>
                                 <td>{{ $item['Service']['service'] }}</td>
@@ -179,7 +179,7 @@
                     <tbody>
                         @forelse ($DataDone as $item)
                             <tr>
-                                <td><img src="{{ asset('https://hixpress.online/'.$item['Merchant']['logo']) }}" alt="Logo" width="50"> &nbsp; {{ $item['Merchant']['bussinesName'] }}</td>
+                                <td><img src="{{ asset(env('API_BASE_URL_ORIGIN').$item['Merchant']['logo']) }}" alt="Logo" width="50"> &nbsp; {{ $item['Merchant']['bussinesName'] }}</td>
                                 <td>{{ $item['noResi'] }}</td>
                                 <td>{{ $item['status'] }}</td>
                                 <td>{{ $item['Service']['service'] }}</td>
@@ -265,7 +265,7 @@
                                         <p><strong>Business Name:</strong> {{ $shippingDetail['Merchant']['bussinesName'] }}</p>
                                         <p><strong>Logo:</strong>
                                             @if($shippingDetail['Merchant']['logo'])
-                                                <img src="{{ asset('https://hixpress.online/'.$shippingDetail['Merchant']['logo']) }}" alt="Logo" width="50">
+                                                <img src="{{ asset(env('API_BASE_URL_ORIGIN').$shippingDetail['Merchant']['logo']) }}" alt="Logo" width="50">
                                             @else
                                                 No Logo Available
                                             @endif
@@ -318,7 +318,7 @@
                                 <p><strong>Ongkir:</strong> Rp{{ number_format($shippingDetail['ongkir'], 2) }}</p>
                                 <p><strong>Total Cost:</strong> Rp{{ number_format($shippingDetail['totalCheckout'] + $shippingDetail['ongkir'], 2) }}</p>
                                 @if ($shippingDetail['status'] == 'Done')
-                                    <img src="https://hixpress.online/{{ $shippingDetail['buktiShipping'] }}" width="100px" alt="buktiShipping">
+                                    <img src="{{ env('API_BASE_URL_ORIGIN').$shippingDetail['buktiShipping'] }}" width="100px" alt="buktiShipping">
                                 @endif
                                 <hr>
                                 <h6>Shipping Logs</h6>

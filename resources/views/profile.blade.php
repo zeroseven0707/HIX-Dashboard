@@ -43,7 +43,7 @@
 <body>
     <div class="profile-header">
         <div class="position-relative d-inline-block">
-            <img src="{{ 'https://hixpress.online/' . $profile['logo'] }}" alt="Logo" class="img-fluid rounded-circle" width="150">
+            <img src="{{ env('API_BASE_URL_ORIGIN') . $profile['logo'] }}" alt="Logo" class="img-fluid rounded-circle" width="150">
             <a href="/logo" class="edit-icon"><i class="fas fa-edit"></i></a>
         </div>
         <h1>{{ $profile['username'] }}</h1>

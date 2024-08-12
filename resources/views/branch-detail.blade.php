@@ -36,7 +36,7 @@
 <body>
     <div class="profile-header">
         <div class="position-relative d-inline-block">
-            <img src="{{ asset('https://hixpress.online/' . $branch['Merchant']['logo']) }}" alt="Merchant Logo" class="img-fluid rounded-circle" width="150">
+            <img src="{{ asset(env('API_BASE_URL_ORIGIN'). $branch['Merchant']['logo']) }}" alt="Merchant Logo" class="img-fluid rounded-circle" width="150">
         </div>
         <h1>{{ $branch['Merchant']['bussinesName'] }}</h1>
     </div>

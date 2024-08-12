@@ -28,7 +28,7 @@ class Dashboard extends Component
         $response = Http::withHeaders([
             'api-key' => session()->get('apiKey'),
         ])->get($url.'regular/On Delivery', [
-            'take' => 4,
+            'take' => 3,
             'page' => 1
         ]);
 
@@ -46,7 +46,7 @@ class Dashboard extends Component
         $response = Http::withHeaders([
             'api-key' => session()->get('apiKey'),
         ])->get($url.'driver/all-driver', [
-            'take' => 4,
+            'take' => 3,
             'page' => 1
         ]);
 
@@ -82,7 +82,7 @@ class Dashboard extends Component
         $response = Http::withHeaders([
             'api-key' => session()->get('apiKey'),
         ])->get($url.'regular/On Hold', [
-            'take' => 5,
+            'take' => 3,
             'page' => 1
         ]);
 

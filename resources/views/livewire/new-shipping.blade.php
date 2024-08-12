@@ -36,7 +36,7 @@
                     @forelse ($data as $item)
                         <tr>
                             <td>{{ $item['Merchant']['bussinesName'] }}</td>
-                            <td><img src="{{ asset('https://tedy-dev.my.id/'.$item['Merchant']['logo']) }}" alt="Logo" width="50"></td>
+                            <td><img src="{{ asset(env('API_BASE_URL_ORIGIN').$item['Merchant']['logo']) }}" alt="Logo" width="50"></td>
                             <td>{{ $item['noResi'] }}</td>
                             <td>{{ $item['status'] }}</td>
                             <td>{{ $item['Service']['service'] }}</td>
