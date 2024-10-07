@@ -47,7 +47,7 @@
                     <tbody>
                         @forelse ($DataRequest as $item)
                             <tr>
-                                <td><img src="{{ env('API_BASE_URL_ORIGIN').$item['Merchant']['logo']) }}" alt="Logo" width="50"> &nbsp; {{ $item['Merchant']['bussinesName'] }}</td>
+                                <td><img src="{{ env('API_BASE_URL_ORIGIN').$item['Merchant']['logo'] }}" alt="Logo" width="50"> &nbsp; {{ $item['Merchant']['bussinesName'] }}</td>
                                 <td>{{ $item['noResi'] }}</td>
                                 <td>{{ $item['status'] }}</td>
                                 <td>{{ $item['Service']['service'] }}</td>

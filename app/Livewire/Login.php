@@ -53,7 +53,7 @@ class Login extends Component
     public function logout()
     {
       Session::forget('apiKey');
-      return redirect('login');
+      return redirect('/');
     }
     public function indexx()
     {

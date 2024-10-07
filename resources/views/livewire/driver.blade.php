@@ -16,35 +16,53 @@
         <a href="/driver-registration">
             <button class="btn btn-primary">New</button>
         </a>
-    <table class="table align-middle mb-0">
-        <thead class="table-light">
-            <tr>
-                <th>Full Name</th>
-                <th>Unit Kendaraan</th>
-                <th>Contact</th>
-                <th>Keterangan</th>
-                <th colspan="2">Verif Status</th>
-            </tr>
-        </thead>
-        <tbody>
-            @forelse ($driver as $item)
+        <table class="table align-middle mb-0">
+            <thead class="table-light">
                 <tr>
-                    <td>{{ $item['fullName'] }}</td>
-                    <td>{{ $item['UnitKendaraan']['unitKendaraan'] }}</td>
-                    <td>{{ $item['contact'] }}</td>
-                    <td>{{ $item['keterangan'] }}</td>
-                    <td>{{ $item['verifStatus'] }}</td>
-                    <td>
-                        <button class="btn btn-primary" wire:click="fetchDetail('{{ $item['id'] }}')">View Detail</button>
-                    </td>
+                    <th>Full Name</th>
+                    <th>Unit Kendaraan</th>
+                    <th>Contact</th>
+                    <th>Keterangan</th>
+                    <th colspan="2">Verif Status</th>
                 </tr>
-            @empty
-                <tr>
-                    <td colspan="7">No data available</td>
-                </tr>
-            @endforelse
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @forelse ($driver as $item)
+                    <tr>
+                        <td>{{ $item['fullName'] }}</td>
+                        <td>{{ $item['UnitKendaraan']['unitKendaraan'] }}</td>
+                        <td>{{ $item['contact'] }}</td>
+                        <td>{{ $item['keterangan'] }}</td>
+                        <td>{{ $item['verifStatus'] }}</td>
+                        <td>
+                            <button class="btn btn-primary" wire:click="fetchDetail('{{ $item['id'] }}')">View Detail</button>
+                        </td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="7">No data available</td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
+        
+        <!-- Pagination Controls -->
+        <div class="pagination-controls ">
+            <button class="btn btn-secondary" 
+                    {{ $currentPage == 1 ? 'disabled' : '' }} 
+                    wire:click="fetchDrivers({{ $currentPage - 1 }})">
+                Previous
+            </button>
+            
+            <span>Page {{ $currentPage }} of {{ $totalPages }}</span>
+            
+            <button class="btn btn-secondary" 
+                    {{ $currentPage == $totalPages ? 'disabled' : '' }} 
+                    wire:click="fetchDrivers({{ $currentPage + 1 }})">
+                Next
+            </button>
+        </div>
+        
     <div class="modal fade @if($showDetailModal) show @endif" tabindex="-1" role="dialog" style="@if($showDetailModal) display: block; @else display: none; @endif">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
@@ -104,7 +122,6 @@
                                         <button class='btn btn-danger float-end'>Verifikasi</button>
                                     </form>
                                     @else
-                                        <button class='btn btn-primary float-end'>Accepted</button>
                                     @endif
                                 </div>
                             </div>

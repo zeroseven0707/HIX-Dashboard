@@ -33,7 +33,7 @@
     <body>
     <div class="wrapper">
           <!--start sidebar -->
-        @if (Request::is('login') || Request::is('registrasi'))
+        @if (Request::is('/') || Request::is('registrasi'))
         @else
         @if (session('type') == 'cabang')
           @include('components.layouts.sidebar')
@@ -42,7 +42,7 @@
         @endif
         @endif
       <!--end sidebar -->
-      @if (Request::is('login') || Request::is('registrasi'))
+      @if (Request::is('/') || Request::is('registrasi'))
       @else
       <header class="top-header">
         <nav class="navbar navbar-expand gap-3">
@@ -64,7 +64,7 @@
           </div>
         </div>
 
-        @if (Request::is('login'))
+        @if (Request::is('/'))
         @livewire('login')
         @elseif (Request::is('dashboard'))
             @livewire('dashboard')

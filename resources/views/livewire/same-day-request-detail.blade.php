@@ -26,7 +26,7 @@
                             <h5 class="card-title text-secondary">
                                 <a class="text-decoration-none text-dark" data-toggle="collapse" href="#paket-{{ $index }}" role="button" aria-expanded="false" aria-controls="paket-{{ $index }}">
                                     {{ $paket['noResi'] }}<br>
-                                    <small>penerima : {{ $package['namaPenerima'] }}</small>
+                                    <small>penerima : {{ $paket['namaPenerima'] }}</small>
                                 </a>
                             </h5>
                             <div class="collapse" id="paket-{{ $index }}">

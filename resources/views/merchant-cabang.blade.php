@@ -101,6 +101,23 @@
                 @endforeach
             </tbody>
         </table>
+
+         <!-- Pagination Controls -->
+         <div class="pagination-controls mt-4">
+            <button class="btn btn-secondary" 
+                    {{ $currentPage == 1 ? 'disabled' : '' }} 
+                    wire:click="fetchDrivers({{ $currentPage - 1 }})">
+                Previous
+            </button>
+            
+            <span>Page {{ $currentPage }} of {{ $totalPages }}</span>
+            
+            <button class="btn btn-secondary" 
+                    {{ $currentPage == $totalPages ? 'disabled' : '' }} 
+                    wire:click="fetchDrivers({{ $currentPage + 1 }})">
+                Next
+            </button>
+        </div>
     </div>
 
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>

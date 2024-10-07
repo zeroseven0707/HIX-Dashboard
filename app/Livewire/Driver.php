@@ -12,25 +12,33 @@ class Driver extends Component
     public $showDetailModal = false;
     public $driverDetail = null;
     public $driverId;
+    public $currentPage;
+    public $totalPages;
 
     public function mount()
     {
-        $this->fetchDataDrivers();
+        $this->fetchDrivers();
     }
-    public function fetchDataDrivers()
+    public function fetchDrivers($page = 1, $take = 10)
     {
         $url = env('API_BASE_URL');
         $response = Http::withHeaders([
             'api-key' => session()->get('apiKey'),
-        ])->get($url.'driver/all-driver');
+        ])->get("{$url}driver/all-driver?page={$page}&take={$take}");
+    
         if ($response->successful()) {
-            // dd(json_decode($response));
-            $this->driver = $response->json()['driver'];
+            $data = $response->json();
+            $this->driver = $data['driver'];
+            $this->currentPage = $data['meta']['page']; // Asumsi API memberikan informasi halaman saat ini
+            $this->totalPages = $data['meta']['lastPage'];   // Asumsi API memberikan informasi total halaman
         } else {
             // Handle error
             $this->driver = [];
+            $this->currentPage = 1;
+            $this->totalPages = 1;
         }
     }
+    
     public function verif($id)
     {
         $base_url = env('API_BASE_URL');
@@ -42,7 +50,7 @@ class Driver extends Component
     
         if ($response->successful()) {
             $this->showDetailModal = false;
-            $this->fetchDataDrivers();
+            $this->fetchDrivers();
             session()->flash('message', 'Driver berhasil diverifikasi.');
         } else {
             $this->showDetailModal = false;
@@ -74,6 +82,15 @@ class Driver extends Component
     }
     public function render()
     {
-        return view('livewire.driver');
+        return view('livewire.driver', [
+            'driver' => $this->driver,
+            'currentPage' => $this->currentPage,
+            'totalPages' => $this->totalPages,
+        ]);
     }
+    // Jika tombol pagination ditekan
+public function changePage($page)
+{
+    $this->fetchDrivers($page);
+}
 }
