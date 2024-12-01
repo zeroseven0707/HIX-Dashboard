@@ -729,10 +729,10 @@ ion-icon {
 /* Footer */
 
 .footer {
-    position: absolute;
-    left: 260px;
-    right: 0;
-    bottom: 0;
+    position: fixed; /* Ubah dari absolute ke fixed */
+    left: 0; /* Ubah left ke 0 agar melebar penuh */
+    right: 0; /* Pastikan right juga diatur ke 0 */
+    bottom: 0; /* Tetap di bawah */
     padding: 0.7rem;
     color: #484444;
     background-color: #fff;
@@ -742,8 +742,9 @@ ion-icon {
 }
 
 .wrapper.toggled .footer {
-    left: 0px;
+    left: 0; /* Tetap sama */
 }
+
 
 
 /* Utilities */
@@ -1529,3 +1530,188 @@ ul.categories-list li {
         height: auto;
     }
 }
+
+/* Dashboard */
+
+.country-icon {
+    width: 50px;      /* Lebar kotak persegi */
+    height: 50px;     /* Tinggi kotak persegi */
+    overflow: hidden; /* Sembunyikan bagian gambar yang melampaui kotak */
+}
+
+.country-icon img {
+    width: 100%;      /* Sesuaikan lebar gambar dengan kontainer */
+    height: auto;     /* Tinggi otomatis untuk menjaga proporsi */
+    object-fit: cover; /* Memastikan gambar memenuhi area tanpa mengubah proporsi */
+}
+
+.country-icon5 {
+    width: 35px;      /* Lebar kotak persegi */
+    height: 35px;     /* Tinggi kotak persegi */
+    overflow: hidden; /* Sembunyikan bagian gambar yang melampaui kotak */
+}
+
+.country-icon5 img {
+    width: 100%;      /* Sesuaikan lebar gambar dengan kontainer */
+    height: auto;     /* Tinggi otomatis untuk menjaga proporsi */
+    object-fit: cover; /* Memastikan gambar memenuhi area tanpa mengubah proporsi */
+}
+
+.country-icon2 {
+    width: 50px;      /* Lebar kotak persegi */
+    height: 50px;     /* Tinggi kotak persegi */
+    overflow: hidden; /* Sembunyikan bagian gambar yang melampaui kotak */
+}
+
+.country-icon2 img {
+    width: 100%;      /* Sesuaikan lebar gambar dengan kontainer */
+    height: auto;     /* Tinggi otomatis untuk menjaga proporsi */
+    object-fit: cover; /* Memastikan gambar memenuhi area tanpa mengubah proporsi */
+}
+
+.country-icon3 {
+    width: 150px;      /* Lebar kotak persegi */
+    height: 150px;     /* Tinggi kotak persegi */
+    overflow: hidden; /* Sembunyikan bagian gambar yang melampaui kotak */
+}
+
+.country-icon3 img {
+    width: 100%;      /* Sesuaikan lebar gambar dengan kontainer */
+    height: auto;     /* Tinggi otomatis untuk menjaga proporsi */
+    object-fit: cover; /* Memastikan gambar memenuhi area tanpa mengubah proporsi */
+}
+
+.alamat-column {
+    max-width: 200px; /* Tentukan lebar maksimum kolom */
+    word-wrap: break-word; /* Paksa teks untuk membungkus jika terlalu panjang */
+    word-break: break-word; /* Pastikan kata panjang terputus secara paksa */
+    white-space: normal; /* Izinkan teks membungkus */
+}
+
+.info-field {
+    margin-bottom: 10px; /* Jarak antar field */
+}
+
+.info-field p {
+    margin: 0; /* Menghilangkan margin default pada paragraf */
+}
+
+.info-value {
+    color: #333; /* Warna untuk nilai */
+    padding-left: 25px; /* Jarak dari ikon */
+}
+
+.modal-body {
+    font-size: 14px; /* Ukuran font lebih kecil untuk tampilan yang lebih rapi */
+}
+
+.card {
+    border-radius: 15px;
+}
+
+/* Timeline container */
+.timeline {
+    position: relative;
+    padding-left: 40px; /* Adjust space for the vertical line */
+    margin-top: 20px;
+}
+
+/* Vertical line */
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 23px;  /* Ensure this matches the dot's center */
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: #e0e0e0; /* Blue line color */
+}
+
+/* List item (log entry) */
+.timeline .list-group-item {
+    position: relative;
+    padding-left: 20x; /* Space for the dots */
+    border: none;
+}
+
+/* Dot for each log entry */
+.timeline .list-group-item::before {
+    content: '';
+    position: absolute;
+    left: -22px;  /* Align the dot to the line */
+    top: 50%;     /* Ensure the dot is vertically centered */
+    transform: translateY(-50%); /* Adjust to exactly center it */
+    width: 12px;
+    height: 12px;
+    border-radius: 50%; /* Make the dot circular */
+    background-color: #e0e0e0; /* Blue dot color */
+}
+
+
+.timeline .text-muted {
+    color: #6c757d !important;
+}
+
+/* Timeline container */
+.timeline2 {
+    position: relative;
+    padding-left: 55px; /* Adjust space for the vertical line */
+    margin-top: 20px;
+}
+
+/* Vertical line */
+.timeline2::before {
+    content: '';
+    position: absolute;
+    left: 23px;  /* Ensure this matches the dot's center */
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: #e0e0e0; /* Blue line color */
+}
+
+/* List item (log entry) */
+.timeline2 .list-group-item {
+    position: relative;
+    padding-left: 20x; /* Space for the dots */
+    border: none;
+}
+
+/* Dot for each log entry */
+.timeline2 .list-group-item::before {
+    content: '';
+    position: absolute;
+    left: -22px;  /* Align the dot to the line */
+    top: 50%;     /* Ensure the dot is vertically centered */
+    transform: translateY(-50%); /* Adjust to exactly center it */
+    width: 12px;
+    height: 12px;
+    border-radius: 50%; /* Make the dot circular */
+    background-color: #e0e0e0; /* Blue dot color */
+}
+
+
+.timeline2 .text-muted {
+    color: #6c757d !important;
+}
+
+.compact-text {
+    margin-bottom: 1rem; /* Mengurangi jarak antar elemen teks */
+}
+.card-body p {
+    line-height: 1.2; /* Menyesuaikan tinggi baris agar teks lebih rapat */
+}
+
+/* .badge {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    border-radius: 0.75rem;
+} */
+p {
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+.fas {
+    margin-right: 8px;
+}
+

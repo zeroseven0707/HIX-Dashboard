@@ -74,10 +74,20 @@ class DriverRegistration extends Component
         ]);
 
         if ($response->successful()) {
-            session()->flash('message', 'Driver registered successfully!');
+            $this->dispatch('swal', [
+                'title' =>  'Success',
+                'text' => 'Driver registered successfully!',
+                'icon' => 'success'
+            ]);
+            // session()->flash('message', 'Driver registered successfully!');
         } else {
-            dd($response->json());
-            session()->flash('error', 'Failed to register driver.');
+            // dd($response->json());
+            // session()->flash('error', 'Failed to register driver.');
+            $this->dispatch('swal', [
+                'title' =>  'Failed',
+                'text' => $response->json()['errors']['message'],
+                'icon' => 'error'
+            ]);
         }
     }
     public function unitKendaraan()

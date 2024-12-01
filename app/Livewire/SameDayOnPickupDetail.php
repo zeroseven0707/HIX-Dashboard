@@ -20,7 +20,7 @@ class SameDayOnPickupDetail extends Component
         $response = Http::withHeaders([
             'api-key' => session()->get('apiKey'),
         ])->get('https://tedy-dev.my.id/api/regular/sameday/on-hold/detail',[
-            'take' => 4,
+            'take' => 10,
             'page' => 1,
             'branchId' => $this->branchId
         ]);

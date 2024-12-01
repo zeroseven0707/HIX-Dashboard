@@ -13,6 +13,28 @@ class SameDay extends Component
     public $DataOnDelivery = [];
     public $DataDone = [];
     public $needAssigned = [];
+    public $pagination = [
+        'request' => [
+            'currentPage' => 1,
+            'totalPages' => 1,
+        ],
+        'onPickup' => [
+            'currentPage' => 1,
+            'totalPages' => 1,
+        ],
+        'onHold' => [
+            'currentPage' => 1,
+            'totalPages' => 1,
+        ],
+        'onDelivery' => [
+            'currentPage' => 1,
+            'totalPages' => 1,
+        ],
+        'Done' => [
+            'currentPage' => 1,
+            'totalPages' => 1,
+        ],
+    ];
 
     public function mount()
     {
@@ -37,9 +59,12 @@ class SameDay extends Component
         if ($response->successful()) {
             // dd(json_decode($response));
             $this->DataRequest = $response->json()['shipping_sameday'];
+            // $this->pagination['request']['currentPage'] = $response->json()['meta']['page'];
+            // $this->pagination['request']['totalPages'] = $response->json()['meta']['lastPage'];
         } else {
-            // Handle error
             $this->DataRequest = [];
+            // $this->pagination['request']['currentPage'] = 1;
+            // $this->pagination['request']['totalPages'] = 1;
         }
     }
     public function onHold()
@@ -144,6 +169,8 @@ class SameDay extends Component
 
     public function render()
     {
-        return view('livewire.same-day');
+        return view('livewire.same-day', [
+            'pagination' => $this->pagination, // Mengirim array pagination ke view
+        ]);
     }
 }

@@ -16,9 +16,18 @@
             padding: 3rem 0;
             text-align: center;
         }
-        .profile-header img {
+        .profile-header .img-container {
+            width: 150px;
+            height: 150px;
             border: 5px solid #fff;
-            margin-bottom: 1rem;
+            border-radius: 50%;
+            overflow: hidden; /* Mengatasi gambar keluar dari kontainer */
+            margin: 0 auto;
+        }
+        .profile-header img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Memastikan gambar tetap proporsional */
         }
         .profile-info {
             margin-top: -5rem;
@@ -35,8 +44,8 @@
 </head>
 <body>
     <div class="profile-header">
-        <div class="position-relative d-inline-block">
-            <img src="{{ asset(env('API_BASE_URL_ORIGIN'). $branch['Merchant']['logo']) }}" alt="Merchant Logo" class="img-fluid rounded-circle" width="150">
+        <div class="position-relative d-inline-block img-container">
+            <img src="{{ asset(env('API_BASE_URL_ORIGIN'). $branch['Merchant']['logo']) }}" alt="Merchant Logo" class="img-fluid">
         </div>
         <h1>{{ $branch['Merchant']['bussinesName'] }}</h1>
     </div>

@@ -37,7 +37,7 @@ class InstanCreateShippingController extends Controller
         $url = env('API_BASE_URL');
         $response = Http::withHeaders([
             'api-key' => session()->get('apiKey'),
-        ])->get($url.'layanan/kabupaten', [
+        ])->get($url . 'layanan/kabupaten', [
             'provinsiId' => $request->provinsiId
         ]);
 
@@ -53,7 +53,7 @@ class InstanCreateShippingController extends Controller
         $url = env('API_BASE_URL');
         $response = Http::withHeaders([
             'api-key' => session()->get('apiKey'),
-        ])->get($url.'layanan/kecamatan', [
+        ])->get($url . 'layanan/kecamatan', [
             'kabupatenId' => $request->kabupatenId
         ]);
 
@@ -82,14 +82,14 @@ class InstanCreateShippingController extends Controller
 
         return redirect()->back();
     }
-    
+
     public function submit(Request $request)
     {
         $url = env('API_BASE_URL') . 'regular/instant';
         $products = $request->products;
         $shipping_detail = $request->shipping_detail;
         $penerima = $request->penerima;
-        
+
         foreach ($products as &$product) {
             $product['quantity'] = (int) $product['quantity'];
         }
@@ -98,22 +98,36 @@ class InstanCreateShippingController extends Controller
         $penerima['provinsiId'] = (int) $penerima['provinsiId'];
         $penerima['kabupatenId'] = (int) $penerima['kabupatenId'];
         $penerima['kecamatanId'] = (int) $penerima['kecamatanId'];
-        
+
         $data = [
             'products' => $products,
             'shipping_detail' => $shipping_detail,
             'penerima' => $penerima,
         ];
-        $response = Http::withHeaders(['api-key' => $this->apiKey])->post($url, $data);
-        // dd(json_decode($response));    
-        if ($response->successful()) {
-                return back()->with('message','successfully created shipping Instan');
-                $this->resetInputFields($request);
-            } else {
-            return back()->with('error','creating failed shipping Instan');
-            }
 
+        $response = Http::withHeaders(['api-key' => $this->apiKey])->post($url, $data);
+
+        if ($response->successful()) {
+            $status = $response->json()['shipping_info']['status'];
+
+            return back()->with('success', 'Successfully created shipping Instan.<br>Status: ' . '<strong>' . $status . '</strong>');
+        } else {
+            $status = $response->json()['status'];
+            $message = $response->json()['message'];
+            $errors = $response->json()['error'];
+
+            // Buat pesan error yang lebih mudah dipahami
+            $errorMessage =  $message . ".<br><br>Details:<ul>";
+            foreach ($errors as $error) {
+                $errorMessage .= "<li>" . $error['path'][0] . " - " . $error['message'] . "</li>";
+            }
+            $errorMessage .= "</ul>";
+
+            // Return back with the detailed error message
+            return back()->with('error', $errorMessage);
+        }
     }
+
 
     private function resetInputFields(Request $request)
     {

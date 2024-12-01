@@ -8,10 +8,16 @@ use Livewire\Component;
 class DashboardMerchant extends Component
 {
     public $merchant;
-    public $totalPemasukan = 0;
+    public $totalPemasukan = ['transferred' => 0, 'notTransferred' => 0];
     public $branchs = [];
+    public $range = 'last30days'; // Default range
 
     public function mount()
+    {
+        $this->fetchData();
+    }
+
+    public function updatedRange()
     {
         $this->fetchData();
     }
@@ -21,7 +27,9 @@ class DashboardMerchant extends Component
         $url = env('API_BASE_URL');
         $response = Http::withHeaders([
             'api-key' => session('apiKey'),
-        ])->get($url.'merchant/laporan/keuangan');
+        ])->get($url . 'merchant/laporan/keuangan', [
+            'range' => $this->range, // Gunakan range dalam API call
+        ]);
 
         if ($response->successful()) {
             $data = $response->json();
@@ -29,12 +37,13 @@ class DashboardMerchant extends Component
             $this->totalPemasukan = $data['total_pemasukan'];
             $this->branchs = $data['branchs'];
         } else {
-            // Handle error
+            // Tangani kesalahan
             $this->merchant = [];
-            $this->totalPemasukan = 0;
+            $this->totalPemasukan = ['transferred' => 0, 'notTransferred' => 0];
             $this->branchs = [];
         }
     }
+
     public function render()
     {
         return view('livewire.dashboard-merchant');

@@ -46,7 +46,7 @@ class Dashboard extends Component
         $response = Http::withHeaders([
             'api-key' => session()->get('apiKey'),
         ])->get($url.'driver/all-driver', [
-            'take' => 3,
+            'take' => 5,
             'page' => 1
         ]);
 
@@ -87,6 +87,7 @@ class Dashboard extends Component
         ]);
 
         if ($response->successful()) {
+            // dd($response->json());
             $this->onHold = $response->json()['data'];
         } else {
             // Handle error

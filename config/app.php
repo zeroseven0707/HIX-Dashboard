@@ -15,6 +15,20 @@ return [
 
     'name' => env('APP_NAME', 'Laravel'),
 
+    // 'providers' => [
+    //     // Other service providers...
+
+    //     Barryvdh\DomPDF\ServiceProvider::class,
+    //     Livewire\LivewireServiceProvider::class,
+    // ],
+
+    // 'aliases' => [
+    //     // ...
+    //     'PDF' => \Barryvdh\DomPDF\Facade::class,
+    //     'Blade' => Illuminate\Support\Facades\Blade::class,
+    // ],
+
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment

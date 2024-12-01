@@ -11,6 +11,8 @@ class MerchantTracking extends Component
     public $driver;
     public $status;
     public $logs = [];
+    public $pengirim = [];
+    public $penerima = [];
 
     public function trackOrder()
     {
@@ -29,13 +31,30 @@ class MerchantTracking extends Component
             $this->driver = $data['driver'] ?? 'N/A';
             $this->status = $data['status'] ?? 'N/A';
             $this->logs = $data['logs'] ?? [];
+
+            // Assign the merchant (pengirim) and recipient (penerima) details
+            $this->pengirim = $data['pengirim'] ?? [
+                'merchant' => 'Unknown Merchant',
+                'logo' => '',
+                'cabang' => 'Unknown Branch',
+                'alamat' => 'Unknown Address',
+            ];
+
+            $this->penerima = $data['penerima'] ?? [
+                'nama' => 'Unknown Recipient',
+                'alamat' => 'Unknown Address',
+            ];
+
         } catch (\Exception $e) {
             // Handle the exception if something goes wrong
             $this->driver = 'Error';
             $this->status = 'Error';
             $this->logs = [];
+            $this->pengirim = [];
+            $this->penerima = [];
         }
     }
+
     public function render()
     {
         return view('livewire.merchant-tracking');
